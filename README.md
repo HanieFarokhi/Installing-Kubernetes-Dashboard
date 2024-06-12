@@ -1,7 +1,7 @@
 # Installing-Kubernetes-Dashboard
 Installing-Kubernetes-Dashboard
 
-Deploying Dashboard
+## Deploying Dashboard
 
 # Update your system:
 sudo apt update
