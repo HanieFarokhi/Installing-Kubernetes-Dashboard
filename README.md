@@ -24,8 +24,10 @@ sudo apt-get install -y kubectl
 # Deploy Kubernetes Dashboard:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 
-# Create a Service Account and ClusterRoleBinding: Create a YAML file named dashboard-adminuser.yaml with the following
+# Create a Service Account and ClusterRoleBinding:
+Create a YAML file named dashboard-adminuser.yaml with the following
 content:
+
 ```yaml
   apiVersion: v1
   kind: ServiceAccount
