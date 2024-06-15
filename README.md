@@ -26,39 +26,38 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/a
 
 # Create a Service Account and ClusterRoleBinding: Create a YAML file named dashboard-adminuser.yaml with the following
 content:
-yaml
+```yaml
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: admin-user
+    namespace: kubernetes-dashboard
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: admin-user
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: ServiceAccount
+    name: admin-user
+    namespace: kubernetes-dashboard
+```
 
 
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kubernetes-dashboard
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: admin-user
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: admin-user
-  namespace: kubernetes-dashboard
-Apply the configuration:
-bash
-Copy code
-kubectl apply -f dashboard-adminuser.yaml
+# Apply the configuration:
+ kubectl apply -f dashboard-adminuser.yaml
 
 
 # 	Obtain the Bearer Token:
-kubectl -n kubernetes-dashboard create token admin-user
+  kubectl -n kubernetes-dashboard create token admin-user
 
 
 # 	Start the Kubernetes Proxy:
-kubectl proxy
+  kubectl proxy
 
 
 ## 	Access the Kubernetes Dashboard: Open a web browser and navigate to:
@@ -76,6 +75,14 @@ kubectl get pods -n kubernetes-dashboard
 
 # 	Confirm Proxy is Running:
 curl http://localhost:8001
+
+
+
+### Step 2: Deploying Cacti with MariaDB Integration
+Once MariaDB is deployed and you've created a new database and user passwords, you can proceed with deploying Cacti using the following stack YAML configuration:
+
+
+
 
 
 
