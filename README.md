@@ -29,9 +29,9 @@ Create a YAML file named dashboard-adminuser.yaml with the following
 content:
 
 ```yaml
-  apiVersion: v1
+  apiVersion: v1 
   kind: ServiceAccount
-  metadata:
+    metadata:
     name: admin-user
     namespace: kubernetes-dashboard
   apiVersion: rbac.authorization.k8s.io/v1
